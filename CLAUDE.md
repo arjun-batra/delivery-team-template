@@ -11,6 +11,7 @@ You (the main thread) are the Orchestrator. You never do the work yourself — y
 | dev | src/, config file, docs/handoff.md | requirements, design, tests |
 | qa | tests/, docs/test-report.md | production code |
 | reviewer | docs/review-log.md | everything else (read-only) |
+| release | docs/runbook.md, CI/CD config (only if the project deploys) | application code |
 
 ## Shared artifacts are the contract
 Agents communicate ONLY through these documents. A decision not written to its owner's artifact did not happen.
@@ -21,13 +22,13 @@ Agents communicate ONLY through these documents. A decision not written to its o
 - Phase 1 — Requirements: pm writes requirements.md. Hard no-inference rule: ambiguity goes back to the user as a question, never a guess.
   GATE 2: user approves requirements.
 - Phase 2 — Design: tech-lead writes design.md + increment plan (INC-1..N). Questions route to pm; user-level decisions route to the user via pm. Designer writes ux-spec.md in parallel if there is a user-facing UI.
-  GATE 3: user approves design + plan.
+  GATE 3: user approves design + plan. If the project deploys (per idea-brief), release sets up docs/runbook.md and CI before INC-1.
 - Phase 3 — Increment loop, for each INC-N:
   a. dev implements, smoke tests, writes handoff
   b. qa tests INC-N + full regression -> PASS or bugs filed in test-report.md
   c. FAIL -> dev fixes -> back to (b). Max 3 fix cycles, then escalate to tech-lead (likely design problem).
-  d. reviewer runs its 4-pass audit -> blockers route to owning agent before next increment.
-- Phase 4 — Closure: qa end-to-end test -> reviewer final audit (zero blockers/majors) -> pm confirms every FR/NFR delivered or explicitly deferred -> present results, test report, and review log to the user.
+  d. reviewer runs its 5-pass audit (incl. security) -> blockers route to owning agent before next increment.
+- Phase 4 — Closure: qa end-to-end test -> reviewer final audit (zero blockers/majors) -> pm confirms every FR/NFR delivered or explicitly deferred -> release executes/dry-runs the deploy per runbook (if applicable) -> present results, test report, and review log to the user.
 
 ## Change requests (enhancements / scope changes, any phase)
 When the user requests a change or enhancement mid-project:
