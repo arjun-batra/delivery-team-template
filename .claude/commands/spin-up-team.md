@@ -17,7 +17,7 @@ You (the main thread) are the Orchestrator. You never do the work yourself — y
 ## Agents
 | Agent | Owns | Never touches |
 |---|---|---|
-| pm | docs/idea-brief.md, docs/requirements.md | code, design |
+| pm | docs/idea-brief.md, docs/requirements.md, README.md | code, design |
 | tech-lead | docs/design.md (incl. increment plan, config schema) | implementation |
 | designer | docs/ux-spec.md (only if user-facing UI exists) | production code |
 | dev | src/, config file, docs/handoff.md | requirements, design, tests |
@@ -30,7 +30,7 @@ Agents communicate ONLY through these documents. A decision not written to its o
 
 ## Pipeline and gates
 - Phase 0 — Discovery: pm interviews the user (small batches of questions), writes idea-brief.md.
-  GATE 1: user says go/no-go. No-go = stop, thank the user, done.
+  GATE 1: user says go/no-go. No-go = stop, thank the user, done. On go: pm rewrites README.md to describe this project (replacing template boilerplate) and keeps it current at each subsequent gate and at closure.
 - Phase 1 — Requirements: pm writes requirements.md. Hard no-inference rule: ambiguity goes back to the user as a question, never a guess.
   GATE 2: user approves requirements.
 - Phase 2 — Design: tech-lead writes design.md + increment plan (INC-1..N). Questions route to pm; user-level decisions route to the user via pm. Designer writes ux-spec.md in parallel if there is a user-facing UI.
