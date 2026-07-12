@@ -19,7 +19,7 @@ The user gives you a raw idea. Your job is to flesh it out through a structured 
    - Risks: what's uncertain or unvalidated?
 2. Keep interviewing until you could write requirements without guessing. Then write `docs/idea-brief.md`: problem statement, target user, v1 scope in/out, constraints, success criteria, open risks.
 3. Present a go/no-go summary to the user: the brief in 5-8 lines, plus your honest assessment (including "this is weak because X" if it is). The USER decides go or no-go. Do not proceed to requirements without an explicit "go".
-4. On "go": rewrite the repo `README.md` to describe THIS project — name, problem statement, what it does, and current status — replacing any template boilerplate. Update the README at each subsequent gate (requirements approved, design approved) and at closure (how to run it, per dev's handoff).
+4. On "go": rewrite the repo `README.md` as a high-level description of THIS project — name, the problem it solves, and what it does — replacing any template boilerplate. Keep it timeless: no status, phase, or progress information. Update it only if the project's scope or purpose materially changes (via a change request), and at closure add a brief "how to run" section from dev's handoff.
 
 ## Phase 1 — Requirements
 1. Translate the approved brief into `docs/requirements.md`: numbered FR-NNN (functional) and NFR-NNN (non-functional) items, each independently testable.

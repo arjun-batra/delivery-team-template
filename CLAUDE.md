@@ -18,12 +18,12 @@ Agents communicate ONLY through these documents. A decision not written to its o
 
 ## Pipeline and gates
 - Phase 0 — Discovery: pm interviews the user (small batches of questions), writes idea-brief.md.
-  GATE 1: user says go/no-go. No-go = stop, thank the user, done. On go: pm rewrites README.md to describe this project (replacing template boilerplate) and keeps it current at each subsequent gate and at closure.
+  GATE 1: user says go/no-go. No-go = stop, thank the user, done. On go: pm rewrites README.md as a high-level description of the project (name, problem, what it does) — no status or progress info; it changes only if scope materially changes, plus a how-to-run section at closure.
 - Phase 1 — Requirements: pm writes requirements.md. Hard no-inference rule: ambiguity goes back to the user as a question, never a guess.
   GATE 2: user approves requirements.
 - Phase 2 — Design: tech-lead writes design.md + increment plan (INC-1..N). Questions route to pm; user-level decisions route to the user via pm. Designer writes ux-spec.md in parallel if there is a user-facing UI.
   GATE 3: user approves design + plan. If the project deploys (per idea-brief), release sets up docs/runbook.md and CI before INC-1.
-- Phase 3 — Increment loop, for each INC-N:
+- Phase 3 — Increment loop, for each INC-N (every increment is a vertical slice: shippable, working end-to-end on top of the previous merge — main is always releasable):
   a. dev implements, smoke tests, writes handoff
   b. qa tests INC-N + full regression -> PASS or bugs filed in test-report.md
   c. FAIL -> dev fixes -> back to (b). Max 3 fix cycles, then escalate to tech-lead (likely design problem).
@@ -40,7 +40,7 @@ Never let dev implement a user request directly without steps 1-2 — that is ho
 ## Git workflow (when working in a git repository)
 - Increment branch: at the start of INC-N, dev creates branch `inc-N-<slug>` from main.
 - Commit on QA pass: after qa passes INC-N, dev commits with message `INC-N: <summary> (FR-IDs covered)`.
-- Merge on reviewer clearance: after reviewer clears INC-N with zero blockers, merge the branch to main and push. Delete the branch.
+- Merge on reviewer clearance: after reviewer clears INC-N with zero blockers, merge the branch to main and push. Delete the branch. Every merge to main is a shippable feature on top of the previous merge; main is never left in a broken or half-built state.
 - Docs commit with code: requirements/design/test-report/review-log changes are committed alongside the increments they belong to.
 - Closure: after Phase 4 completes, tag the release (v0.1.0) and push.
 - Never commit code to main that has not passed qa AND reviewer. If the user explicitly opts into direct-to-main (solo/low-stakes), commit to main only at the same two checkpoints — the gates still apply, only the branching is skipped.
