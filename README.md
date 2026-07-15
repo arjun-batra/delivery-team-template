@@ -32,3 +32,9 @@ After the first adoption the commands live in the repo, so every later session o
 ## Change requests
 Open a Claude Code session in the repo: "Change request: <what you want>"
 PM assesses -> requirements updated -> design updated -> loop resumes.
+
+## Token efficiency
+- Run the main session on Sonnet; escalate to Opus manually only for individual hard design decisions.
+- One increment per session: end the session and use /resume-work fresh next time.
+- Prefer /clear + /resume-work over /compact — compaction is itself a large paid summarization and lossier than the docs.
+- Use /usage to monitor spend.
